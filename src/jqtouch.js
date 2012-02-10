@@ -50,7 +50,13 @@
                 icon: null,
                 icon4: null, // available in iOS 4.2 and later.
                 preloadImages: false,
-                startupScreen: null,
+                ipadLStartupScreen: null,
+                ipadPStartupScreen: null,
+                iphoneLStartupScreen: null,
+                iphonePStartupScreen: null,
+                iphone4LStartupScreen: null,
+                iphone4PStartupScreen: null,
+                startupScreen: null, // deprecated, for backwards compatibility 
                 statusBar: 'default', // other options: black-translucent, black
                 submitSelector: '.submit',
                 touchSelector: 'a, .touch',
@@ -348,10 +354,46 @@
             if (jQTSettings.icon4) {
                 hairExtensions += '<link rel="apple-touch-icon' + precomposed + '" sizes="114x114" href="' + jQTSettings.icon4 + '" />';
             }
-            // Set startup screen
-            if (jQTSettings.startupScreen) {
-                hairExtensions += '<link rel="apple-touch-startup-image" href="' + jQTSettings.startupScreen + '" />';
-            }
+            
+            // Setup startup screen
+             //ipad landscape 
+           if (jQTSettings.ipadLStartupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.ipadLStartupScreen + 
+                        'media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />';
+                    }
+                    
+           //ipad portrait 
+           if (jQTSettings.ipadPStartupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.ipadPStartupScreen + 
+                        'media="screen and (min-device-width: 481px) and (max-device-width: 768px) and (orientation:portrait)" />';
+                    }
+
+           //iphone portrait 
+           if (jQTSettings.iphonePStartupScreen || JQTSettings.startupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.iphonePStartupScreen + 
+                        'media="screen and (min-device-width: 200px) and (max-device-width: 320) and (orientation:portrait)" />';
+                    }
+           //iphone landscape 
+           if (jQTSettings.iphoneLStartupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.iphoneLStartupScreen + 
+                        'media="screen and (min-device-width: 200px) and (max-device-width: 460) and (orientation:landscape)" />';
+                    }
+           //iphone4 portrait 
+           if (jQTSettings.iphone4PStartupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.iphone4PStartupScreen + 
+                        'media="screen and (min-device-width: 480px) and (max-device-width: 640) and (orientation:portrait)" />';
+                    }
+           //iphone4 landscape 
+           if (jQTSettings.iphone4LStartupScreen) {
+                        hairExtensions += '<link rel="apple-touch-startup-image" href="' + 
+                        jQTSettings.iphone4LStartupScreen + 
+                        'media="screen and (min-device-width: 680px) and (max-device-width: 960) and (orientation:landscape)" />';
+                    }
 
             // Set viewport
             if (jQTSettings.fixedViewport) {
